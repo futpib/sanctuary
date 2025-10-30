@@ -2145,52 +2145,52 @@
     impl: maybeToNullable
   };
 
-  //# maybeToLeft :: b -> Maybe a -> Either a b
+  //# justToLeft :: b -> Maybe a -> Either a b
   //.
   //. Converts a Maybe to an Either. Nothing becomes a Right (containing the
   //. first argument); a Just becomes a Left.
   //.
   //. See also [`leftToMaybe`](#leftToMaybe) and
-  // [`maybeToRight`](#maybeToRight).
+  // [`justToRight`](#justToRight).
   //.
   //. ```javascript
-  //. > S.maybeToLeft ('No negative numbers') (S.find (S.lt (0)) ([0, 1, 2]))
+  //. > S.justToLeft ('No negative numbers') (S.find (S.lt (0)) ([0, 1, 2]))
   //. Right ('No negative numbers')
   //.
-  //. > S.maybeToLeft ('No negative numbers') (S.find (S.lt (0)) ([-1, 0, 1]))
+  //. > S.justToLeft ('No negative numbers') (S.find (S.lt (0)) ([-1, 0, 1]))
   //. Left (-1)
   //. ```
-  function maybeToLeft(x) {
+  function justToLeft(x) {
     return maybe (Right (x)) (Left);
   }
-  _.maybeToLeft = {
+  _.justToLeft = {
     consts: {},
     types: [b, $.Maybe (a), $.Either (a) (b)],
-    impl: maybeToLeft
+    impl: justToLeft
   };
 
-  //# maybeToRight :: a -> Maybe b -> Either a b
+  //# justToRight :: a -> Maybe b -> Either a b
   //.
   //. Converts a Maybe to an Either. Nothing becomes a Left (containing the
   //. first argument); a Just becomes a Right.
   //.
   //. See also [`rightToMaybe`](#rightToMaybe) and
-  // [`maybeToLeft`](#maybeToLeft).
+  // [`justToLeft`](#justToLeft).
   //.
   //. ```javascript
-  //. > S.maybeToRight ('Expecting an integer') (S.parseInt (10) ('xyz'))
+  //. > S.justToRight ('Expecting an integer') (S.parseInt (10) ('xyz'))
   //. Left ('Expecting an integer')
   //.
-  //. > S.maybeToRight ('Expecting an integer') (S.parseInt (10) ('42'))
+  //. > S.justToRight ('Expecting an integer') (S.parseInt (10) ('42'))
   //. Right (42)
   //. ```
-  function maybeToRight(x) {
+  function justToRight(x) {
     return maybe (Left (x)) (Right);
   }
-  _.maybeToRight = {
+  _.justToRight = {
     consts: {},
     types: [a, $.Maybe (b), $.Either (a) (b)],
-    impl: maybeToRight
+    impl: justToRight
   };
 
   //. ### Either
@@ -2454,7 +2454,7 @@
   //. Converts an Either to a Maybe. A Left becomes a Just; a Right becomes
   //. Nothing.
   //.
-  //. See also [`maybeToLeft`](#maybeToLeft) and
+  //. See also [`justToLeft`](#justToLeft) and
   //. [`rightToMaybe`](#rightToMaybe).
   //.
   //. ```javascript
@@ -2478,7 +2478,7 @@
   //. Converts an Either to a Maybe. A Left becomes Nothing; a Right becomes
   //. a Just.
   //.
-  //. See also [`maybeToRight`](#maybeToRight) and
+  //. See also [`justToRight`](#justToRight) and
   //. [`leftToMaybe`](#leftToMaybe).
   //.
   //. ```javascript
