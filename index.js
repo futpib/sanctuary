@@ -2150,7 +2150,7 @@
   //. Converts a Maybe to an Either. Nothing becomes a Right (containing the
   //. first argument); a Just becomes a Left.
   //.
-  //. See also [`leftToMaybe`](#leftToMaybe) and
+  //. See also [`leftToJust`](#leftToJust) and
   // [`justToRight`](#justToRight).
   //.
   //. ```javascript
@@ -2174,7 +2174,7 @@
   //. Converts a Maybe to an Either. Nothing becomes a Left (containing the
   //. first argument); a Just becomes a Right.
   //.
-  //. See also [`rightToMaybe`](#rightToMaybe) and
+  //. See also [`rightToJust`](#rightToJust) and
   // [`justToLeft`](#justToLeft).
   //.
   //. ```javascript
@@ -2449,52 +2449,52 @@
     impl: encase
   };
 
-  //# leftToMaybe :: Either a b -> Maybe a
+  //# leftToJust :: Either a b -> Maybe a
   //.
   //. Converts an Either to a Maybe. A Left becomes a Just; a Right becomes
   //. Nothing.
   //.
   //. See also [`justToLeft`](#justToLeft) and
-  //. [`rightToMaybe`](#rightToMaybe).
+  //. [`rightToJust`](#rightToJust).
   //.
   //. ```javascript
-  //. > S.leftToMaybe (S.Left ('Cannot divide by zero'))
+  //. > S.leftToJust (S.Left ('Cannot divide by zero'))
   //. Just ('Cannot divide by zero')
   //.
-  //. > S.leftToMaybe (S.Right (42))
+  //. > S.leftToJust (S.Right (42))
   //. Nothing
   //. ```
-  function leftToMaybe(either) {
+  function leftToJust(either) {
     return either.isLeft ? Just (either.value) : Nothing;
   }
-  _.leftToMaybe = {
+  _.leftToJust = {
     consts: {},
     types: [$.Either (a) (b), $.Maybe (a)],
-    impl: leftToMaybe
+    impl: leftToJust
   };
 
-  //# rightToMaybe :: Either a b -> Maybe b
+  //# rightToJust :: Either a b -> Maybe b
   //.
   //. Converts an Either to a Maybe. A Left becomes Nothing; a Right becomes
   //. a Just.
   //.
   //. See also [`justToRight`](#justToRight) and
-  //. [`leftToMaybe`](#leftToMaybe).
+  //. [`leftToJust`](#leftToJust).
   //.
   //. ```javascript
-  //. > S.rightToMaybe (S.Left ('Cannot divide by zero'))
+  //. > S.rightToJust (S.Left ('Cannot divide by zero'))
   //. Nothing
   //.
-  //. > S.rightToMaybe (S.Right (42))
+  //. > S.rightToJust (S.Right (42))
   //. Just (42)
   //. ```
-  function rightToMaybe(either) {
+  function rightToJust(either) {
     return either.isLeft ? Nothing : Just (either.value);
   }
-  _.rightToMaybe = {
+  _.rightToJust = {
     consts: {},
     types: [$.Either (a) (b), $.Maybe (b)],
-    impl: rightToMaybe
+    impl: rightToJust
   };
 
   //. ### Logic
